@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { createEntry } from './reducers';
 import './App.css';
+import Entry from './components/Entry';
 
 class App extends Component {
+  
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.onCreate(event.target.value)
+  }
+  
   render() {
+    const todoList = this.props.value.map((item, index) => <Entry value={item} key={index}/>)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <form id="" onSubmit={this.handleSubmit}>
+          <input type="text"></input>
+        </form>
+        {todoList}
       </div>
     );
   }
